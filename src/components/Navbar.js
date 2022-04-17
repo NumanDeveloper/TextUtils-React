@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Navbar(props) {
     return (
-        <nav className={`navbar navbar-expand-md navbar-${props.mode} bg-${props.mode}`}>
-            <div className="container-fluid">
+        <nav className={`navbar navbar-expand-md navbar-${props.mode === 'green' || props.mode === 'pink' || props.mode === 'gold' || props.mode === 'coffee' ? 'dark' : props.mode} bg-${props.mode === 'green' || props.mode === 'pink' || props.mode === 'gold' || props.mode === 'coffee' ? 'dark' : props.mode}`}>
+            <div className="container">
                 <a className="navbar-brand" href="/">{props.title}</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -21,12 +21,36 @@ export default function Navbar(props) {
                         <input className="form-control me-2" type="search" placeholder="Find" />
                         <button className="btn btn-outline-light" type="submit">Search</button>
                     </form> */}
-                    <div className={`form-check form-switch text-${props.mode === 'light' ? 'dark' : 'light'}`}>
-                        <input className="form-check-input" type="checkbox" role="switch" id="switch" onClick={props.toggleMode}/>
-                        <label className="form-check-label" htmlFor="switch">Enable Dark Mode</label>
+                    <div className={`form-check form-switch text-${props.mode === 'light' ? 'dark' : 'white'}`}>
+                        <input className="form-check-input" type="checkbox" role="switch" id="switch" onClick={props.toggleMode} />
+                        <label className="form-check-label" htmlFor="switch">Dark Mode</label>
+                    </div>
+
+                    {/* Green toggle switch  */}
+                    <div className={`form-check mx-2 form-switch text-${props.mode === 'light' ? 'dark' : 'white'}`}>
+                        <input className="form-check-input" type="checkbox" role="switch" id="switch" onClick={props.toggleGreenMode} />
+                        <label className="form-check-label" htmlFor="switch">Green Mode</label>
+                    </div>
+
+                    {/* Pink toggle switch  */}
+                    <div className={`form-check mx-2 form-switch text-${props.mode === 'light' ? 'dark' : 'white'}`}>
+                        <input className="form-check-input" type="checkbox" role="switch" id="switch" onClick={props.togglePinkMode} />
+                        <label className="form-check-label" htmlFor="switch">Pink Mode</label>
+                    </div>
+
+                    {/* Gold toggle switch  */}
+                    <div className={`form-check mx-2 form-switch text-${props.mode === 'light' ? 'dark' : 'white'}`}>
+                        <input className="form-check-input" type="checkbox" role="switch" id="switch" onClick={props.toggleGoldMode} />
+                        <label className="form-check-label" htmlFor="switch">Gold Mode</label>
+                    </div>
+
+                    {/* Coffee toggle switch  */}
+                    <div className={`form-check mx-2 form-switch text-${props.mode === 'light' ? 'dark' : 'white'}`}>
+                        <input className="form-check-input" type="checkbox" role="switch" id="switch" onClick={props.toggleCoffeeMode} />
+                        <label className="form-check-label" htmlFor="switch">Coffee Mode</label>
                     </div>
                 </div>
             </div>
         </nav>
-    )
+    );
 }

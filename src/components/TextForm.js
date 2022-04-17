@@ -9,14 +9,17 @@ export default function TextForm(props) {
     const handleUpperClick = () => {
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Text converted to uppercase", "success");
     }
     const handleLowerClick = () => {
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Text converted to lowercase", "success");
     }
     const handleClearClick = () => {
-        let newText = "";
+        let newText = '';
         setText(newText);
+        props.showAlert("Text cleared", "success");
     }
     const handleCapClick = () => {
         let words = text.split(" ");
@@ -25,6 +28,7 @@ export default function TextForm(props) {
             upperCaseWord += element.charAt(0).toUpperCase() + element.slice(1) + " ";
         });
         setText(upperCaseWord);
+        props.showAlert("Text capitalized", "success");
     }
     const handleOnChange = (event) => {
         setText(event.target.value);
@@ -37,16 +41,16 @@ export default function TextForm(props) {
                     backgroundColor: props.mode === 'dark' ? 'gray' : 'white',
                     color: props.mode === 'dark' ? 'white' : 'black'
                 }} id="myBox" rows="8"></textarea>
-                <button className="my-3 mx-1 btn btn-primary" onClick={handleUpperClick}>Convert to Uppercase</button>
-                <button className="my-3 mx-1 btn btn-primary" onClick={handleLowerClick}>Convert to Lowercase</button>
-                <button className="my-3 mx-1 btn btn-primary" onClick={handleCapClick}>Capitalize</button>
-                <button className="my-3 mx-1 btn btn-primary" onClick={handleClearClick}>Clear</button>
+                <button className={`border border-danger my-3 mx-1 btn btn-${props.mode}`} onClick={handleUpperClick}>Convert to Uppercase</button>
+                <button className={`border border-danger my-3 mx-1 btn btn-${props.mode}`} onClick={handleLowerClick}>Convert to Lowercase</button>
+                <button className={`border border-danger my-3 mx-1 btn btn-${props.mode}`} onClick={handleCapClick}>Capitalize</button>
+                <button className={`border border-danger my-3 mx-1 btn btn-${props.mode}`} onClick={handleClearClick}>Clear</button>
             </div>
 
             <div className="container" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h2>Your text summary</h2>
-                <b><p>{text.split(".").length} sentences, {text.split(" ").length} words and {text.length} characters.</p>
-                    <p>{0.008 * text.split(" ").length} Minutes Read.</p></b>
+                <b><p>{text.split(".").length - 1} sentences, {text.split(" ").length - 1} words and {text.length} characters.</p>
+                    <p>{(0.008 * text.split(" ").length-0.008)} Minutes Read.</p></b>
                 <h3>Preview</h3>
                 <p>{text.length > 0 ? text : "Enter something in text area to preview !!"}</p>
             </div>
