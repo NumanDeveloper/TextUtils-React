@@ -55,5 +55,5 @@ export default function TextForm(props) {
                 <p>{text.length > 0 ? text : "Enter something in text area to preview !!"}</p>
             </div>
         </>
-    )
+    );
 }
