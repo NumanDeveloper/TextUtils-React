@@ -41,18 +41,18 @@ export default function TextForm(props) {
                     backgroundColor: props.mode === 'dark' ? 'gray' : 'white',
                     color: props.mode === 'dark' ? 'white' : 'black'
                 }} id="myBox" rows="8"></textarea>
-                <button className={`border border-danger my-3 mx-1 btn btn-${props.mode}`} onClick={handleUpperClick}>Convert to Uppercase</button>
-                <button className={`border border-danger my-3 mx-1 btn btn-${props.mode}`} onClick={handleLowerClick}>Convert to Lowercase</button>
-                <button className={`border border-danger my-3 mx-1 btn btn-${props.mode}`} onClick={handleCapClick}>Capitalize</button>
-                <button className={`border border-danger my-3 mx-1 btn btn-${props.mode}`} onClick={handleClearClick}>Clear</button>
+                <button disabled={text.length === 0} className={`border border-danger my-3 mx-1 btn btn-${props.mode}`} onClick={handleUpperClick}>Convert to Uppercase</button>
+                <button disabled={text.length === 0} className={`border border-danger my-3 mx-1 btn btn-${props.mode}`} onClick={handleLowerClick}>Convert to Lowercase</button>
+                <button disabled={text.length === 0} className={`border border-danger my-3 mx-1 btn btn-${props.mode}`} onClick={handleCapClick}>Capitalize</button>
+                <button disabled={text.length === 0} className={`border border-danger my-3 mx-1 btn btn-${props.mode}`} onClick={handleClearClick}>Clear</button>
             </div>
 
             <div className="container" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h2>Your text summary</h2>
-                <b><p>{text.split(".").length - 1} sentences, {text.split(" ").length - 1} words and {text.length} characters.</p>
-                    <p>{(0.008 * text.split(" ").length-0.008)} Minutes Read.</p></b>
+                <b><p>{text.split(".").filter((element) => { return element.length !== 0 }).length} sentences, {text.split(/\s+/).filter((element) => { return element.length !== 0 }).length} words and {text.length} characters.</p>
+                    <p>{(0.008 * text.split(/\s+/).filter((element) => { return element.length !== 0 }).length)} Minutes Read.</p></b>
                 <h3>Preview</h3>
-                <p>{text.length > 0 ? text : "Enter something in text area to preview !!"}</p>
+                <p>{text.length > 0 ? text : "Nothing to preview !!"}</p>
             </div>
         </>
     );
